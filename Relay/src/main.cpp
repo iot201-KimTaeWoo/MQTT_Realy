@@ -5,7 +5,7 @@
 #define             RELAY 15
 const char*         ssid ="SO070VOIP9C33";
 const char*         password = "8D38049C32";
-const char*         mqttServer = "iotlab101.tosshub.co";
+const char*         mqttServer = "54.234.134.141";
 const int           mqttPort = 1883;
 
 unsigned long       interval = 10000;
@@ -39,7 +39,7 @@ void setup() {
             delay(2000);
         }
     }
-    client.subscribe("id/yourname/relay/cmd");
+    client.subscribe("id/taewoo/relay/cmd");
     digitalWrite(RELAY, LOW);
 }
 
@@ -60,13 +60,13 @@ void pubStatus() {
     } else {
         sprintf(buf, "off");
     }
-    client.publish("id/yourname/relay/evt", buf);
+    //client.publish("id/yourname/relay/evt", buf);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
  
     char msgBuffer[20];
-    if(!strcmp(topic, "id/yourname/relay/cmd")) {
+    if(!strcmp(topic, "id/taewoo/relay/cmd")) {
         int i;
         for(i = 0; i < (int)length; i++) {
             msgBuffer[i] = payload[i];
